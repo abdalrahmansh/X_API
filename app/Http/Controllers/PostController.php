@@ -34,7 +34,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string',
+            'title' => 'string',
             'body' => 'required|string',
         ]);
 
@@ -104,6 +104,46 @@ class PostController extends Controller
         return response()->json([
             'result' => true,
             'message' => 'Post deleted successfully'
+        ]);
+    }
+
+    public function like($postId)
+    {
+        $post = Post::find($postId);
+
+        if (!$post) {
+            return response()->json([
+                'result' => false,
+                'message' => 'Post not found'
+            ], 404);
+        }
+
+        $post->total_likes++;
+        $post->save();
+
+        return response()->json([
+            'result' => true,
+            'message' => 'Post liked successfully'
+        ]);
+    }
+
+    public function dislike($postId)
+    {
+        $post = Post::find($postId);
+
+        if (!$post) {
+            return response()->json([
+                'result' => false,
+                'message' => 'Post not found'
+            ], 404);
+        }
+
+        $post->total_dislikes++;
+        $post->save();
+
+        return response()->json([
+            'result' => true,
+            'message' => 'Post disliked successfully'
         ]);
     }
 }
