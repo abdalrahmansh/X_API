@@ -36,7 +36,10 @@ Route::group(['prefix' => 'posts'], function(){
         Route::post('/', [PostController::class, 'store']);
         Route::put('/{postId}', [PostController::class, 'update']);
         Route::delete('/{postId}', [PostController::class, 'destroy']);
-        
+
+        Route::post('/{postId}/like', [PostController::class, 'like']);
+        Route::post('/{postId}/dislike', [PostController::class, 'dislike']);
+
         Route::post('/{postId}/comments', [CommentController::class, 'store']);
         Route::put('/comments/{commentId}', [CommentController::class, 'update']);
         Route::delete('/comments/{commentId}', [CommentController::class, 'destroy']);

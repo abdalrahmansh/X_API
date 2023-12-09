@@ -18,7 +18,8 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
-
+            'total_likes' => (int)$this->total_likes,
+            'total_dislikes' => (int)$this->total_dislikes,
             'user' => new UserResource($this->user),
             'comments' => new CommentCollection($this->comments),
             'created_at' => $this->created_at->format('M j, Y H:i:s'),

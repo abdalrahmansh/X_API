@@ -20,6 +20,8 @@ class PostCollection extends ResourceCollection
                     'id' => $post->id,
                     'title' => $post->title,
                     'body' => $post->body,
+                    'total_likes' => (int)$post->total_likes,
+                    'total_dislikes' => (int)$post->total_dislikes,
                     'user' => new UserResource($post->user),
                     'comments' => new CommentCollection($post->comments),
                     'created_at' => $post->created_at->format('M j, Y H:i:s'),
