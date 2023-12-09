@@ -20,8 +20,10 @@ class PostCollection extends ResourceCollection
                     'id' => $post->id,
                     'title' => $post->title,
                     'body' => $post->body,
-                    'created_at' => $this->created_at->format('M j, Y H:i:s'),
-                    'updated_at' => $this->updated_at->format('M j, Y H:i:s'),
+                    'user' => new UserResource($post->user),
+                    'comments' => new CommentCollection($post->comments),
+                    'created_at' => $post->created_at->format('M j, Y H:i:s'),
+                    'updated_at' => $post->updated_at->format('M j, Y H:i:s'),
                 ];
             }),
         ];

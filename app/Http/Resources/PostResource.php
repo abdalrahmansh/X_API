@@ -18,7 +18,9 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
-            'comments' => $this->comments,
+
+            'user' => new UserResource($this->user),
+            'comments' => new CommentCollection($this->comments),
             'created_at' => $this->created_at->format('M j, Y H:i:s'),
             'updated_at' => $this->updated_at->format('M j, Y H:i:s'),
         ];
