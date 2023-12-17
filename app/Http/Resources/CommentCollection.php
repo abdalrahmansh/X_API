@@ -19,7 +19,7 @@ class CommentCollection extends ResourceCollection
                 return [
                     'id' => $comment->id,
                     'body' => $comment->body,
-                    'user' => new UserResource($comment->post->user),
+                    'user' => new UserResource($comment->user),
                     'created_at' => $comment->created_at->format('M j, Y H:i:s'),
                     'updated_at' => $comment->updated_at->format('M j, Y H:i:s'),
                 ];

@@ -6,6 +6,7 @@ use App\Http\Resources\CommentResource;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -21,9 +22,13 @@ class CommentController extends Controller
             'body' => 'required|string',
         ]);
 
-        $comment = $post->comments()->create([
-            'body' => $request->body,
-        ]);
+        $user = Auth::user();
+
+        $comment = new Comment;
+        $comment->body = $request->body;
+        $comment->post()->associate($post);
+        $comment->user()->associate($user);
+        $comment->save();
 
         return response()->json([
             'result' => true,
