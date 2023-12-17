@@ -23,7 +23,7 @@ class CommentCollection extends ResourceCollection
                     'created_at' => $comment->created_at->format('M j, Y H:i:s'),
                     'updated_at' => $comment->updated_at->format('M j, Y H:i:s'),
                 ];
-            })
+            })->sortByDesc('created_at')->values()->all(),
         ];
     }
 }
