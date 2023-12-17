@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AlwaysAcceptJson;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            Route::middleware('api')
+            Route::middleware(['api', AlwaysAcceptJson::class])
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
