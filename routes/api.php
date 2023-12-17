@@ -46,3 +46,10 @@ Route::group(['prefix' => 'posts'], function(){
     });
 });
 
+
+Route::fallback(function(){
+    return response()->json([
+        'result' => false,
+        'message' => 'Endpoint Not found'
+    ]);
+});
