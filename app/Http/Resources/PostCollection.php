@@ -27,7 +27,11 @@ class PostCollection extends ResourceCollection
                     'created_at' => $post->created_at->format('M j, Y H:i:s'),
                     'updated_at' => $post->updated_at->format('M j, Y H:i:s'),
                 ];
+                
             }),
+            'meta' => [
+                'total' => $this->collection->count(),
+            ],
         ];
     }
 }
